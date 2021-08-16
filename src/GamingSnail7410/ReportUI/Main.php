@@ -30,10 +30,31 @@ class Main extends PluginBase {
    }
    
    public function reportUI($player){
-       $form =  $this->getServer()->getPluginManager()->getPlugin("FormAPI")->createCustomForm(function (Player $player, array $data = null){
+       $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+       $form = $api->createCustomForm(function (Player $player, int $data = null){
               if($data === null){
                   return true;
               }
+             switch($result){
+               case 0;
+                 
+               break;
+              
+               case 1;
+                 
+               break;
+
+               case 2;
+                 
+               break;
+            });
+            $form->setTitle("Report A Player");
+            $form->addInput("Type In A Player Name");
+            $form->addInput("Type In The Reason Of The Report");
+            $form->sendToPlayer($player);
+            return $form;
+          }
+          public function Webhook($player){
               $webhook = new Webhook("https://discord.com/api/webhooks/876598099429187584/wkKXKbe2io90sGUYpdIPZebpec9qvWfpCm16XAUWXJWeYvp3bwtOl8cNRbnCaWEf1_lW");
               $msg = new Message();
               $embed = new Embed();
@@ -44,12 +65,6 @@ class Main extends PluginBase {
               $embed->setFooter("Hmmmmm");
               $msg->addEmbed($embed);
               $webhook->send($msg);
-            });
-            $form->setTitle("Report A Player");
-            $form->addInput("Type In A Player Name");
-            $form->addInput("Type In The Reason Of The Report");
-            $form->sendToPlayer($player);
-            return $form;
           }
 
 }
